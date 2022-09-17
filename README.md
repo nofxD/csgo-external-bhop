@@ -1,2 +1,4 @@
 # csgo-external-bhop
-CS:GO External Auto Bunnyhop
+Project made for fun.
+
+Build in `Release | x86`
