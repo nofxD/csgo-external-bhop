@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <Windows.h>
 #include <TlHelp32.h>
 #include <thread>
@@ -6,14 +6,16 @@
 inline int processId = 0;
 inline void* handle = nullptr;
 
-template <typename T> constexpr T read(const std::uintptr_t& addr)
+template <typename T>
+constexpr T read(const std::uintptr_t& addr)
 {
   T value;
   ReadProcessMemory(handle, reinterpret_cast<const void*>(addr), &value, sizeof(T), 0);
   return value;
 }
 
-template <typename T> constexpr void write(const std::uintptr_t& addr, const T& value)
+template <typename T>
+constexpr void write(const std::uintptr_t& addr, const T& value)
 {
   WriteProcessMemory(handle, reinterpret_cast<void*>(addr), &value, sizeof(T), 0);
 }
@@ -29,7 +31,8 @@ inline auto GetModuleAddress(const std::string name) -> std::uintptr_t
   }
   
   std::uintptr_t addr = -1;
-  do {
+  do
+  {
     if (!name.compare(me.szModule))
     {
       addr = reinterpret_cast<std::uintptr_t>(me.modBaseAddr);
